@@ -959,7 +959,7 @@ static MMP_ERR MMPS_VStream_CloseEncoder(MMPS_VSTREAM_CLASS *obj)
 
 //#pragma arm section code = "initcall", rodata = "initcall", rwdata = "initcall",  zidata = "initcall" 
 //#pragma O0
-ait_module_init(MMPS_VStream_ModInit);
+//ait_module_init(MMPS_VStream_ModInit);
 //#pragma
 //#pragma arm section rodata, rwdata, zidata
 

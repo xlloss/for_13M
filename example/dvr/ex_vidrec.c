@@ -609,7 +609,7 @@ int Video_Open(MMP_ULONG id, MMPS_VSTREAM_PROPT *propt, MMP_ULONG streamset)
     
     if (!m_VidStream[id].obj) {
         m_VidStream[id].inuse = MMP_FALSE;
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return -2;
     }
     Set_Obj_Pipe(m_VidStream[id].obj->pipe.ibcpipeID,id,V4L2_PIX_FMT_H264);
@@ -635,7 +635,7 @@ int Video_On(MMP_ULONG id, MMP_ULONG v4l2_id, IPC_STREAMER_OPTION opt)
 #endif
     err = MMPS_VStream_Start(m_VidStream[id].obj, v4l2_id, opt);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return -1;
     }
 
@@ -659,7 +659,7 @@ int Video_Off(MMP_ULONG id)
     #endif
     err = MMPS_VStream_Stop(m_VidStream[id].obj);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return -1;
     }
     return 0;
@@ -686,7 +686,7 @@ int Video_Close(MMP_ULONG id)
     printc("Video%d_Close\r\n", id);
     err = MMPS_VStream_Close(m_VidStream[id].obj);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return -1;
     }
 
@@ -720,7 +720,7 @@ int Video_Control(MMP_ULONG id, IPC_VIDEO_CTL ctrl, VIDENC_CTL_SET *param)
     printc("Video%d_Control(%d)\r\n", id, ctrl);
     err = MMPS_VStream_Control(m_VidStream[id].obj, ctrl, param);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return -1;
     }
 
@@ -960,7 +960,7 @@ int Audio_Open(MMP_ULONG id, MMPS_ASTREAM_PROPT *propt)
     printc("Audio%d_Open:%d\r\n", id,OSTime);
     m_AudStream[id].obj = MMPS_AStream_Open(propt);
     if (!m_AudStream[id].obj) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         m_AudStream[id].inuse = MMP_FALSE;
         return -2;
     }
@@ -982,7 +982,7 @@ int Audio_On(MMP_ULONG id, MMP_ULONG v4l2_id, IPC_STREAMER_OPTION opt)
     printc("Audio%d_On:%d\r\n", id , OSTime);
     err = MMPS_AStream_Start(m_AudStream[id].obj, v4l2_id, opt);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return -1;
     }
 
@@ -1003,7 +1003,7 @@ int Audio_Off(MMP_ULONG id)
     printc("Audio%d_Off\r\n", id);
     err = MMPS_AStream_Stop(m_AudStream[id].obj);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return -1;
     }
 
@@ -1031,7 +1031,7 @@ int Audio_Close(MMP_ULONG id)
     printc("Audio%d_Close\r\n", id);
     err = MMPS_AStream_Close(m_AudStream[id].obj);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return -1;
     }
 
@@ -1116,7 +1116,7 @@ int Jpeg_Open(MMP_ULONG id, MMPS_JSTREAM_PROPT *propt)
 	change_effect_mode(ADC_Get_Effect());
     m_JpgStream[id].obj = MMPS_JStream_Open(propt);
     if (!m_JpgStream[id].obj) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         m_JpgStream[id].inuse = MMP_FALSE;
         return -2;
     }
@@ -1138,7 +1138,7 @@ int Jpeg_On(MMP_ULONG id, MMP_ULONG v4l2_id, IPC_STREAMER_OPTION opt)
     printc("Jpeg%d_On\r\n", id);
     err = MMPS_JStream_Start(m_JpgStream[id].obj, v4l2_id, opt);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return -1;
     }
 
@@ -1159,7 +1159,7 @@ int Jpeg_Off(MMP_ULONG id)
     printc("Jpeg%d_Off\r\n", id);
     err = MMPS_JStream_Stop(m_JpgStream[id].obj);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return -1;
     }
 
@@ -1180,7 +1180,7 @@ int Jpeg_Close(MMP_ULONG id)
     printc("Jpeg%d_Close\r\n", id);
     err = MMPS_JStream_Close(m_JpgStream[id].obj);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return - 1;
     }
 
@@ -1239,7 +1239,7 @@ int Gray_Open(MMP_ULONG id, MMP_ULONG width, MMP_ULONG height,MMP_ULONG fmt)
     printc("Gray%d_Open\r\n", id);
     m_GrayStream[id].obj = MMPS_YStream_Open(&propt);
     if (!m_GrayStream[id].obj) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         m_GrayStream[id].inuse = MMP_FALSE;
         return -2;
     }
@@ -1262,7 +1262,7 @@ int Gray_On(MMP_ULONG id, MMP_ULONG v4l2_id)
     printc("Gray%d_On\r\n", id);
     err = MMPS_YStream_Start(m_GrayStream[id].obj, v4l2_id);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return -1;
     }
 
@@ -1283,7 +1283,7 @@ int Gray_Off(MMP_ULONG id)
     printc("Gray%d_Off\r\n", id);
     err = MMPS_YStream_Stop(m_GrayStream[id].obj);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return -1;
     }
 
@@ -1304,7 +1304,7 @@ int Gray_Close(MMP_ULONG id)
     printc("Gray%d_Close\r\n", id);
     err = MMPS_YStream_Close(m_GrayStream[id].obj);
     if (err) {
-        printc("\t-> failed\r\n");
+        printc("\t%s -> failed\r\n", __func__);
         return - 1;
     }
 

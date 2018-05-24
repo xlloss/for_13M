@@ -24,7 +24,7 @@
 #include "mmpf_i2cm.h"
 #include "sensor_ar1335.h"
 
-//#define USE_13M 1
+#define USE_13M 1
 
 //==============================================================================
 //
@@ -38,7 +38,7 @@ MMPF_SENSOR_RESOLUTION m_SensorRes =
     1,				// ubSensorModeNum 
     0,				// ubDefPreviewMode 
     0,				// ubDefCaptureMode 
-    3000,
+    3000,           //usPixelSize
 
 //  Mode0
     {1},			// usVifGrabStX 
@@ -62,7 +62,7 @@ MMPF_SENSOR_RESOLUTION m_SensorRes =
     {3000},		    // usBayerOutH 
     {4000},		    // usScalInputW 
     {3000},		    // usScalInputH 
-    {150},		    // usTargetFpsx10 
+    {300},		    // usTargetFpsx10 
     {5152},		    // usVsyncLine   //(Reg 0x22 0x23) + 1
 #else
     {1920},		    // usBayerOutW 

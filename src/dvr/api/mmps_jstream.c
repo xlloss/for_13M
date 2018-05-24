@@ -148,8 +148,17 @@ MMPS_JSTREAM_CLASS *MMPS_JStream_Open(MMPS_JSTREAM_PROPT *propt)
     if (!propt)
     	return NULL;
 
+    printc("%s propt->w %d, propt->h %d, propt->bufsize %d\r\n",
+        __func__, propt->w, propt->h, propt->bufsize);
+
+    printc("%s JStream[0].img_w %d, JStream[0].img_h %d, JStream[0].bufsize %d\r\n",
+        __func__, m_JStream[0].cap->img_w, m_JStream[0].cap->img_h, m_JStream[0].cap->bufsize);
+
     req_frm_size = ALIGN16(propt->w) * ALIGN16(propt->h);
     req_buf_size = propt->bufsize;
+
+    printc("%s req_frm_size %d, req_buf_size %d\r\n",
+        __func__, req_frm_size, req_buf_size);
 
     /* Search a stream whose capability is best-fit with the request feature */
     for(s = 0; s < MAX_JPG_STREAM_NUM; s++) {
@@ -157,6 +166,10 @@ MMPS_JSTREAM_CLASS *MMPS_JStream_Open(MMPS_JSTREAM_PROPT *propt)
             frm_size = ALIGN16(m_JStream[s].cap->img_w) *
                        ALIGN16(m_JStream[s].cap->img_h);
             buf_size = m_JStream[s].cap->bufsize;
+
+            printc("%s frm_size %d, buf_size %d\r\n",
+                __func__, frm_size, buf_size);
+
             if ((frm_size == req_frm_size) && (buf_size == req_buf_size)) {
                 obj = &m_JStream[s];
                 break;

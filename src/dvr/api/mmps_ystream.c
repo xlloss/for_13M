@@ -534,7 +534,7 @@ static MMP_ERR MMPS_YStream_EnablePipe(MMPS_YSTREAM_CLASS *obj, MMP_BOOL bEnable
 }
 //#pragma arm section code = "initcall", rodata = "initcall", rwdata = "initcall",  zidata = "initcall" 
 //#pragma O0
-ait_module_init(MMPS_YStream_ModInit);
+//ait_module_init(MMPS_YStream_ModInit);
 //#pragma
 //#pragma arm section rodata, rwdata, zidata
 

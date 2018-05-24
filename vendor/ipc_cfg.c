@@ -28,6 +28,8 @@ extern char*    __RESET_END__;
 extern char*    __ALLSRAM_END__;  
 #endif
 
+#define USE_STANDARD_13M 1
+
 //==============================================================================
 //
 //                              VARIABLES
@@ -132,6 +134,9 @@ ST_AUDIO_CAP    gstAStreamCap[MAX_AUD_STREAM_NUM] = {
 //                          JPEG Stream Related
 //------------------------------------------------------------------------------
 /* Capability for each JPEG streams */
+
+
+
 #if (MAX_JPG_STREAM_NUM > 0)
 MMP_ULONG       gulMaxJStreamNum = MAX_JPG_STREAM_NUM;
 ST_JPEG_CAP     gstJStreamCap[MAX_JPG_STREAM_NUM] = {
@@ -143,8 +148,14 @@ ST_JPEG_CAP     gstJStreamCap[MAX_JPG_STREAM_NUM] = {
              1920,       ///< max. image height
 #else
 //#error USE_13M
+#if USE_STANDARD_13M
+             4192,       ///< max. image width
+             3104,       ///< max. image height
+#else
              4000,       ///< max. image width
              3000,       ///< max. image height
+#endif
+
 #endif
 
              900,       ///< target size 500K

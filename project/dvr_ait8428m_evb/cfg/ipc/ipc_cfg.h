@@ -43,7 +43,7 @@
 #if V4L2_JPG==0
 #define DBUF_SIZE_4_LINUX       (0x400000)  // DRAM buffer size for Linux: 4MB
 #else
-#define DBUF_SIZE_4_LINUX       (0x800000)  // DRAM buffer size for Linux: 4MB
+#define DBUF_SIZE_4_LINUX       (0xD00000)  // DRAM buffer size for Linux: 4MB
 #endif
 /*
  *  H.264 Stream

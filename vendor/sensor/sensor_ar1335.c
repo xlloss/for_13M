@@ -25,6 +25,7 @@
 #include "sensor_ar1335.h"
 
 #define USE_13M 1
+#define USE_STANDARD_13M 1
 
 //==============================================================================
 //
@@ -45,8 +46,15 @@ MMPF_SENSOR_RESOLUTION m_SensorRes =
     {1},			// usVifGrabStY 
 
 #if USE_13M
+
+#if USE_STANDARD_13M
+    {4200},		    // usVifGrabW 
+    {3112},		    // usVifGrabH 
+#else
     {4008},		    // usVifGrabW 
     {3008},		    // usVifGrabH 
+#endif
+
 #else
     {1928},		    // usVifGrabW 
     {1088},		    // usVifGrabH 
@@ -58,12 +66,23 @@ MMPF_SENSOR_RESOLUTION m_SensorRes =
     {8},			// usBayerDummyInY 
 
 #if USE_13M
+
+#if USE_STANDARD_13M
+    {4192},		    // usBayerOutW 
+    {3104},		    // usBayerOutH 
+    {4192},		    // usScalInputW 
+    {3104},		    // usScalInputH 
+    {300},		    // usTargetFpsx10 
+    {3133},		    // usVsyncLine   //(Reg 0x22 0x23) + 1
+#else
     {4000},		    // usBayerOutW 
     {3000},		    // usBayerOutH 
     {4000},		    // usScalInputW 
     {3000},		    // usScalInputH 
     {300},		    // usTargetFpsx10 
     {5152},		    // usVsyncLine   //(Reg 0x22 0x23) + 1
+#endif
+
 #else
     {1920},		    // usBayerOutW 
     {1080},		    // usBayerOutH 
@@ -497,34 +516,10 @@ MMP_USHORT SNR_AR1335_Reg_1920x1080_30P_Customer[] =
 #endif
 };
 
-// 5M 30FPS
+// 13M : 4000x3000 10fps
 MMP_USHORT SNR_AR1335_Reg_4000x3000_15P_Customer[] = 
 {
-#if 0 //5fps
-    //Working mode
-//	0x0340, 0x0CCE,		//VTS
-//	0x0342, 0x2230,		//HTS
-	0x0344,	116,
-	0x0348,	4123,
-	0x0346,	72,
-	0x034A,	3079,
-	0x3040,	0xC041,
-	0x3172,	0x0206,
-	0x317A,	0x416E,
-	0x3F3C,	0x0003,
-	0x0400,	0,
-	0x0404,	16,
-	0x034C,	4008,
-	0x034E,	3008,
-	0x300C,	4656,
-	0x300A,	10308,
-	0x3012,	5152,
-	0x306E,	0x9080,
-	0x301A,	0x001C,
-#endif
-
-#if 1 //10fps
-    //Working mode
+//Working mode
 //	0x0340, 0x0CCE,		//VTS
 //	0x0342, 0x2230,		//HTS
 	0x0344,	116,
@@ -544,31 +539,37 @@ MMP_USHORT SNR_AR1335_Reg_4000x3000_15P_Customer[] =
 	0x3012,	5152,
 	0x306E,	0x9080,
 	0x301A,	0x021C,
-#endif
+};
 
-#if 0 //15fps
-    //Working mode
+
+// 13M : 4208x3120 16 fps
+// 13M : 4200x3112 16 fps
+MMP_USHORT SNR_AR1335_Reg_4200x3112_16P_Customer[] = 
+{
+//Working mode
 //	0x0340, 0x0CCE,		//VTS
 //	0x0342, 0x2230,		//HTS
 	0x0344,	16,
-	0x0348,	4023,
+//	0x0348,	4223,
+	0x0348,	4215,
 	0x0346,	16,
-	0x034A,	3023,
+	0x034A,	3127,
 	0x3040,	0xC041,
 	0x3172,	0x0206,
 	0x317A,	0x416E,
 	0x3F3C,	0x0003,
 	0x0400,	0,
 	0x0404,	16,
-	0x034C,	4008,
-	0x034E,	3008,
+//	0x034C,	4208,
+//	0x034E,	3120,
+	0x034C,	4200,
+	0x034E,	3112,
+
 	0x300C,	4656,
 	0x300A,	3132,
-	0x3012,	3032,
+	0x3012,	3132,
 	0x306E,	0x9080,
 	0x301A,	0x001C,
-#endif
-
 };
 
 
@@ -593,11 +594,20 @@ static void SNR_Cust_InitConfig(void)
 
 #if USE_13M
     //Mode0
+#if USE_STANDARD_13M
+	SensorCustFunc.OprTable->usSize[RES_IDX_4000x3000_15P] = 
+        (sizeof(SNR_AR1335_Reg_4200x3112_16P_Customer)/sizeof(SNR_AR1335_Reg_4200x3112_16P_Customer[0]))/2;
+
+    SensorCustFunc.OprTable->uspTable[RES_IDX_4000x3000_15P] =
+        &SNR_AR1335_Reg_4200x3112_16P_Customer[0];
+#else
 	SensorCustFunc.OprTable->usSize[RES_IDX_4000x3000_15P] = 
         (sizeof(SNR_AR1335_Reg_4000x3000_15P_Customer)/sizeof(SNR_AR1335_Reg_4000x3000_15P_Customer[0]))/2;
 
     SensorCustFunc.OprTable->uspTable[RES_IDX_4000x3000_15P] =
         &SNR_AR1335_Reg_4000x3000_15P_Customer[0];
+#endif
+
 #else
 
     //Mode1

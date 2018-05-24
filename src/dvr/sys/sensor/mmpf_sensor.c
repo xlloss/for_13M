@@ -1143,6 +1143,7 @@ MMP_ERR MMPF_Sensor_Wait3AConverge(MMP_UBYTE ubSnrSel)
     MMP_ULONG ulframeCnt = 0;
     do {
         MMPF_Sensor_GetParam(ubSnrSel, MMPF_SENSOR_ISP_FRAME_COUNT, &ulframeCnt);
+        printc("ulframeCnt = %d\r\n", ulframeCnt);
 #ifdef PROJECT_LD
         if ((ulframeCnt >= MIN_AE_CONVERGE_FRAME_NUM) && (1))
 #else

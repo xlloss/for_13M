@@ -137,8 +137,14 @@ MMP_ULONG       gulMaxJStreamNum = MAX_JPG_STREAM_NUM;
 ST_JPEG_CAP     gstJStreamCap[MAX_JPG_STREAM_NUM] = {
     // The 1st JPEG stream capability
     {
+#if USE_5M
              2560,       ///< max. image width
              1920,       ///< max. image height
+#else
+             4000,       ///< max. image width
+             3000,       ///< max. image height
+#endif
+
              500,       ///< target size 500K
         0x200000,       ///< compress buffer size 1MB
     },

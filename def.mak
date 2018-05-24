@@ -261,7 +261,7 @@ endif
 
 ifeq ($(DDR),$(filter $(DDR),512M))
 ifeq ($(TARGET),$(filter $(TARGET),MINIBOOT))
-ifeq ($(SENSOR),$(filter $(SENSOR),JXK03))
+ifeq ($(SENSOR),$(filter $(SENSOR),AR1335))
 DEF :=  -DSA_PL	\
 		-DBUILD_CE \
 		-DMINIBOOT_FW \
@@ -269,7 +269,7 @@ DEF :=  -DSA_PL	\
 		-DCHIP=MCR_V2 \
 		-DDRAM_SIZE=0x4000000 \
 		-DBUILD_FW \
-		-DSENSOR_JXK03
+		-DSENSOR_AR1335
 endif
 endif
 endif
@@ -609,7 +609,7 @@ endif
 
 ifeq ($(DDR),$(filter $(DDR),1G))
 ifeq ($(TARGET),$(filter $(TARGET),MINIBOOT))
-ifeq ($(SENSOR),$(filter $(SENSOR),JXK03))
+ifeq ($(SENSOR),$(filter $(SENSOR),AR1335))
 DEF :=  -DSA_PL	\
 		-DBUILD_CE \
 		-DMINIBOOT_FW \
@@ -617,7 +617,7 @@ DEF :=  -DSA_PL	\
 		-DCHIP=MCR_V2 \
 		-DDRAM_SIZE=0x8000000 \
 		-DBUILD_FW \
-		-DSENSOR_JXK03
+		-DSENSOR_AR1335
 endif
 endif
 endif
@@ -956,7 +956,7 @@ endif
 
 ifeq ($(DDR),$(filter $(DDR),2G))
 ifeq ($(TARGET),$(filter $(TARGET),MINIBOOT))
-ifeq ($(SENSOR),$(filter $(SENSOR),JXK03))
+ifeq ($(SENSOR),$(filter $(SENSOR),AR1335))
 DEF :=  -DSA_PL	\
 		-DBUILD_CE \
 		-DMINIBOOT_FW \
@@ -964,7 +964,7 @@ DEF :=  -DSA_PL	\
 		-DCHIP=MCR_V2 \
 		-DDRAM_SIZE=0xF000000 \
 		-DBUILD_FW \
-		-DSENSOR_JXK03
+		-DSENSOR_AR1335
 endif
 endif
 endif
@@ -1303,7 +1303,7 @@ endif
 
 ifeq ($(DDR),$(filter $(DDR),512M))
 ifeq ($(TARGET),$(filter $(TARGET),AITBOOT))
-ifeq ($(SENSOR),$(filter $(SENSOR),JXK03))
+ifeq ($(SENSOR),$(filter $(SENSOR),AR1335))
 DEF :=  -DSA_PL	\
 		-DBUILD_CE \
 		-DMBOOT_FW \
@@ -1311,7 +1311,7 @@ DEF :=  -DSA_PL	\
 		-DCHIP=MCR_V2 \
 		-DDRAM_SIZE=0x4000000 \
 		-DBUILD_FW \
-		-DSENSOR_JXK03
+		-DSENSOR_AR1335
 endif
 endif
 endif
@@ -1650,7 +1650,7 @@ endif
 
 ifeq ($(DDR),$(filter $(DDR),1G))
 ifeq ($(TARGET),$(filter $(TARGET),AITBOOT))
-ifeq ($(SENSOR),$(filter $(SENSOR),JXK03))
+ifeq ($(SENSOR),$(filter $(SENSOR),AR1335))
 DEF :=  -DSA_PL	\
 		-DBUILD_CE \
 		-DMBOOT_FW \
@@ -1658,7 +1658,7 @@ DEF :=  -DSA_PL	\
 		-DCHIP=MCR_V2 \
 		-DDRAM_SIZE=0x8000000 \
 		-DBUILD_FW \
-		-DSENSOR_JXK03
+		-DSENSOR_AR1335
 endif
 endif
 endif
@@ -1998,7 +1998,7 @@ endif
 
 ifeq ($(DDR),$(filter $(DDR),2G))
 ifeq ($(TARGET),$(filter $(TARGET),AITBOOT))
-ifeq ($(SENSOR),$(filter $(SENSOR),JXK03))
+ifeq ($(SENSOR),$(filter $(SENSOR),AR1335))
 DEF :=  -DSA_PL	\
 		-DBUILD_CE \
 		-DMBOOT_FW \
@@ -2006,7 +2006,7 @@ DEF :=  -DSA_PL	\
 		-DCHIP=MCR_V2 \
 		-DDRAM_SIZE=0xF000000 \
 		-DBUILD_FW \
-		-DSENSOR_JXK03
+		-DSENSOR_AR1335
 endif
 endif
 endif
@@ -2446,7 +2446,7 @@ endif
 
 ifeq ($(DDR),$(filter $(DDR),512M))
 ifeq ($(TARGET),$(filter $(TARGET),ALL))
-ifeq ($(SENSOR),$(filter $(SENSOR),JXK03))
+ifeq ($(SENSOR),$(filter $(SENSOR),AR1335))
 DEF :=  -DSA_PL	\
 		-DALL_FW \
 		-DBUILD_CE \
@@ -2456,7 +2456,7 @@ DEF :=  -DSA_PL	\
 		-DDRAM_SIZE=0x4000000 \
 		-DISP_EN=1 \
 		-DBUILD_FW \
-		-DSENSOR_JXK03 
+		-DSENSOR_AR1335 
 endif
 endif
 endif
@@ -2941,7 +2941,7 @@ endif
 
 ifeq ($(DDR),$(filter $(DDR),1G))
 ifeq ($(TARGET),$(filter $(TARGET),ALL))
-ifeq ($(SENSOR),$(filter $(SENSOR),JXK03))
+ifeq ($(SENSOR),$(filter $(SENSOR),AR1335))
 DEF :=  -DSA_PL	\
 		-DALL_FW \
 		-DBUILD_CE \
@@ -2951,7 +2951,7 @@ DEF :=  -DSA_PL	\
 		-DDRAM_SIZE=0x8000000 \
 		-DISP_EN=1 \
 		-DBUILD_FW \
-		-DSENSOR_JXK03 
+		-DSENSOR_AR1335 
 endif
 endif
 endif
@@ -3436,7 +3436,7 @@ endif
 
 ifeq ($(DDR),$(filter $(DDR),2G))
 ifeq ($(TARGET),$(filter $(TARGET),ALL))
-ifeq ($(SENSOR),$(filter $(SENSOR),JXK03))
+ifeq ($(SENSOR),$(filter $(SENSOR),AR1335))
 DEF :=  -DSA_PL	\
 		-DALL_FW \
 		-DBUILD_CE \
@@ -3446,7 +3446,7 @@ DEF :=  -DSA_PL	\
 		-DDRAM_SIZE=0xF000000 \
 		-DISP_EN=1 \
 		-DBUILD_FW \
-		-DSENSOR_JXK03 
+		-DSENSOR_AR1335 
 endif
 endif
 endif

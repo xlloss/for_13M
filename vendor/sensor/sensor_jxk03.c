@@ -984,10 +984,12 @@ MMPF_SENSOR_CUSTOMER SensorCustFunc =
     SNR_Cust_SetShutter,
     SNR_Cust_SetFlip,
     SNR_Cust_SetRotate,
+
     SNR_Cust_CheckVersion,
     SNR_Cust_Switch3ASpeed,
     SNR_Cust_SetNightVision,
     SNR_Cust_SetTest,
+
 	&m_SensorRes,
 	&m_OprTable,
 	&m_VifSetting,

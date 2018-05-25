@@ -158,8 +158,8 @@ ST_JPEG_CAP     gstJStreamCap[MAX_JPG_STREAM_NUM] = {
 
 #endif
 
-             900,       ///< target size 500K
-        0x500000,       ///< compress buffer size 1MB
+            1000,       ///< target size 500K
+        0x600000,       ///< compress buffer size 1MB
     },
 };
 #endif

@@ -50,6 +50,9 @@ MMPF_SENSOR_RESOLUTION m_SensorRes =
 #if USE_STANDARD_13M
     {4200},		    // usVifGrabW 
     {3112},		    // usVifGrabH 
+//    {4208},		    // usVifGrabW 
+//    {3120},		    // usVifGrabH 
+
 #else
     {4008},		    // usVifGrabW 
     {3008},		    // usVifGrabH 
@@ -72,15 +75,16 @@ MMPF_SENSOR_RESOLUTION m_SensorRes =
     {3104},		    // usBayerOutH 
     {4192},		    // usScalInputW 
     {3104},		    // usScalInputH 
-    {300},		    // usTargetFpsx10 
-    {3133},		    // usVsyncLine   //(Reg 0x22 0x23) + 1
+    {700},		    // usTargetFpsx10 
+    {3133 + 3000},		    // usVsyncLine
+//    {5153},		    // usVsyncLine
 #else
     {4000},		    // usBayerOutW 
     {3000},		    // usBayerOutH 
     {4000},		    // usScalInputW 
     {3000},		    // usScalInputH 
     {300},		    // usTargetFpsx10 
-    {5152},		    // usVsyncLine   //(Reg 0x22 0x23) + 1
+    {5153},		    // usVsyncLine   //(Reg 0x22 0x23) + 1
 #endif
 
 #else
@@ -470,10 +474,12 @@ ISP_UINT16 SNR_AR1335_Reg_Init_Customer[] =
 	0x3F40, 0x1511,
 
 	//PLL
-	0x0300, 0x0005, 	// VT_PIX_CLK_DIV
+//	0x0300, 0x0005, 	// VT_PIX_CLK_DIV
+	0x0300, 0x0006, 	// VT_PIX_CLK_DIV
 	0x0302, 0x0001, 	// VT_SYS_CLK_DIV
 	0x0304, 0x0101, 	// PRE_PLL_CLK_DIV
-	0x0306, 0x1919, 	// PLL_MULTIPLIER
+//	0x0306, 0x1919, 	// PLL_MULTIPLIER
+	0x0306, 0x191B, 	// PLL_MULTIPLIER
 	0x0308, 0x000A, 	// OP_PIX_CLK_DIV
 	0x030A, 0x0001, 	// OP_SYS_CLK_DIV
 	0x0112, 0x0A0A, 	// CCP_DATA_FORMAT
@@ -550,8 +556,10 @@ MMP_USHORT SNR_AR1335_Reg_4200x3112_16P_Customer[] =
 //	0x0340, 0x0CCE,		//VTS
 //	0x0342, 0x2230,		//HTS
 	0x0344,	16,
-//	0x0348,	4223,
+
 	0x0348,	4215,
+//	0x0348,	4223,
+
 	0x0346,	16,
 	0x034A,	3127,
 	0x3040,	0xC041,
@@ -560,14 +568,21 @@ MMP_USHORT SNR_AR1335_Reg_4200x3112_16P_Customer[] =
 	0x3F3C,	0x0003,
 	0x0400,	0,
 	0x0404,	16,
+
+	0x034C,	4200,
+	0x034E,	3132,
+
 //	0x034C,	4208,
 //	0x034E,	3120,
-	0x034C,	4200,
-	0x034E,	3112,
 
 	0x300C,	4656,
+
 	0x300A,	3132,
 	0x3012,	3132,
+
+//	0x300A,	5152,
+//	0x3012,	5152,
+
 	0x306E,	0x9080,
 	0x301A,	0x001C,
 };
@@ -660,7 +675,8 @@ static void SNR_Cust_InitConfig(void)
     SensorCustFunc.VifSetting->clockAttr.bClkOutEn                  = MMP_TRUE; 
 
 #if USE_13M
-    SensorCustFunc.VifSetting->clockAttr.ubClkFreqDiv               = 2;
+//    SensorCustFunc.VifSetting->clockAttr.ubClkFreqDiv               = 2;
+    SensorCustFunc.VifSetting->clockAttr.ubClkFreqDiv               = 0;
 #else
     SensorCustFunc.VifSetting->clockAttr.ubClkFreqDiv               = 0;
 #endif
